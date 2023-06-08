@@ -3,6 +3,7 @@ const service = new FamiliaService();
 
 const create = async (req, res) => {
     try {
+        res.set('Access-Control-Allow-Origin', '*');
         const response = await service.create(req.body);
         res.json({ sucess: true,  data: response });
     }catch(error){
@@ -12,6 +13,7 @@ const create = async (req, res) => {
 
 const get = async (req, res) => {
     try {
+        res.set('Access-Control-Allow-Origin', '*');
         const response = await service.find();
         res.json({ sucess: true,  data: response });
     }catch(error){
@@ -21,6 +23,7 @@ const get = async (req, res) => {
 
 const getById = async (req, res) => {
     try {
+        res.set('Access-Control-Allow-Origin', '*');
         const { id } = req.params;
         const response = await service.findOne(id);
         res.json({ sucess: true,  data: { "id": response.id,  "nombre": response.nombre} });
@@ -31,6 +34,7 @@ const getById = async (req, res) => {
 
 const update = async (req, res) => {
     try {
+        res.set('Access-Control-Allow-Origin', '*');
         const { id } = req.params;
         const body = req.body;
         const response = await service.update(id, body);
@@ -42,6 +46,7 @@ const update = async (req, res) => {
 
 const _delete = async (req, res) => {
     try {
+        res.set('Access-Control-Allow-Origin', '*');
         const { id } = req.params;
         const response = await service.delete(id);
         res.json({ sucess: true,  data: response });
