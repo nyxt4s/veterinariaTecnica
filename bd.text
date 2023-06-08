@@ -1,0 +1,46 @@
+-- Database: veterinaria
+
+-- DROP DATABASE IF EXISTS veterinaria;
+
+/*CREATE DATABASE veterinaria
+    WITH
+    OWNER = postgres
+    ENCODING = 'UTF8'
+    LC_COLLATE = 'Spanish_Chile.1252'
+    LC_CTYPE = 'Spanish_Chile.1252'
+    TABLESPACE = pg_default
+    CONNECTION LIMIT = -1;
+*/	
+
+CREATE TABLE raza(
+	id INT GENERATED ALWAYS AS IDENTITY,
+	nombre TEXT,
+	PRIMARY KEY(id)
+);
+	
+CREATE TABLE familia(
+	id INT GENERATED ALWAYS AS IDENTITY,
+	nombre TEXT,
+	PRIMARY KEY(id)
+);
+
+CREATE TABLE persona(
+	id INT GENERATED ALWAYS AS IDENTITY,
+	nombre TEXT,	
+	PRIMARY KEY(id)
+);
+	
+CREATE TABLE mascota(
+id INT GENERATED ALWAYS AS IDENTITY,
+nombre_mascota TEXT,
+id_persona INTEGER not null,
+id_raza INTEGER not null,
+id_familia INTEGER not null,
+PRIMARY KEY(id),
+foreign key (id_familia)
+references familia (id),
+foreign key (id_persona)
+references persona(id),
+foreign key (id_raza)
+references raza (id)
+);
