@@ -4,11 +4,13 @@ const setupModels = require('../db/models/index.js')
 
 const sequelize = new Sequelize (
     'veterinaria', //nombre bd
-    'postgres', //usuario
+    'nyxth', //usuario
     'medina12', //contrasenia
     {
-        host:config.dbHost,
-        dialect: 'postgresql'
+        host: 'postgresql-130841-0.cloudclusters.net',
+        // host:config.dbHost,
+        dialect: 'postgresql',
+        port: '19905'
     }
 );
 
