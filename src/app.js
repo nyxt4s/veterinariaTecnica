@@ -15,14 +15,26 @@ const port = process.env.PORT || 3000 ;
 
 
 app.use(express.json());
+
+
+// configuracion cors
+var whitelist = ['http://127.0.0.1:5173', 'http://localhost:3000']; //white list consumers
 var corsOptions = {
-    origin: 'http://127.0.0.1:5173',
-    optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
-    methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH']
-  }
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(null, false);
+    }
+  },
+  methods: ['GET', 'PUT', 'POST', 'DELETE', 'OPTIONS'],
+  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+  credentials: true, //Credentials are cookies, authorization headers or TLS client certificates.
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'device-remember-token', 'Access-Control-Allow-Origin', 'Origin', 'Accept']
+};
 
+app.use(cors(corsOptions)); //adding cors middleware to the express with above configurations
 
-app.use(cors(corsOptions));
 
 
   // routerApi(app);
