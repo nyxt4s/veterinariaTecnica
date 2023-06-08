@@ -16,7 +16,7 @@ const port = process.env.PORT || 3000 ;
 
 app.use(express.json());
 var corsOptions = {
-    origin: '127.0.0.1:5173/',
+    origin: 'http://127.0.0.1:5173',
     optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
     methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH']
   }
@@ -26,11 +26,6 @@ app.use(cors(corsOptions));
 
 
   // routerApi(app);
-  app.all('*', function (req, res) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Content-Type,Content-Length, Authorization, Accept,X-Requested-With");
-    res.header("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
-   });
 
 // raza
 app.get('/raza', RazaController.get)
